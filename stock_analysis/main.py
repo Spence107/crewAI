@@ -33,8 +33,6 @@ class FinancialCrew:
       tasks=[
         research_task,
         financial_task,
-        filings_task,
-        recommend_task
       ],
       verbose=True
     )
@@ -47,7 +45,7 @@ if __name__ == "__main__":
   print('-------------------------------')
   company = input(
     dedent("""
-      What is the company you want to analyze?
+      What is the company you want to analyze? (Please use the official name of the company, ex Apple Inc.)
     """))
   
   financial_crew = FinancialCrew(company)

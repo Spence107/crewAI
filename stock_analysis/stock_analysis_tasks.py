@@ -16,8 +16,6 @@ class StockAnalysisTasks():
         shifts in market sentiment, and potential impacts on 
         the stock.
         Also make sure to return the stock ticker.
-        
-        {self.__tip_section()}
   
         Make sure to use the most recent data as possible.
   
@@ -40,7 +38,7 @@ class StockAnalysisTasks():
         but now including a clear assessment of the stock's
         financial standing, its strengths and weaknesses, 
         and how it fares against its competitors in the current
-        market scenario.{self.__tip_section()}
+        market scenario.
 
         Make sure to use the most recent data possible.
       """),
@@ -60,8 +58,7 @@ class StockAnalysisTasks():
         Your final answer must be an expanded report that now
         also highlights significant findings from these filings,
         including any red flags or positive indicators for
-        your customer.
-        {self.__tip_section()}        
+        your customer.     
       """),
       agent=agent
     )
@@ -84,10 +81,7 @@ class StockAnalysisTasks():
         customer. It should be a full super detailed report, providing a 
         clear investment stance and strategy with supporting evidence.
         Make it pretty and well formatted for your customer.
-        {self.__tip_section()}
       """),
       agent=agent
     )
 
-  def __tip_section(self):
-    return "If you do your BEST WORK, I'll give you a $10,000 commission!"

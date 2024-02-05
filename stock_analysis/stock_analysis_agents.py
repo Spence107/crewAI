@@ -4,6 +4,7 @@ from tools.browser_tools import BrowserTools
 from tools.calculator_tools import CalculatorTools
 from tools.search_tools import SearchTools
 from tools.sec_tools import SECTools
+from tools.ollama_model_manager import OllamaModelManager
 
 from langchain.tools.yahoo_finance_news import YahooFinanceNewsTool
 
@@ -17,12 +18,13 @@ class StockAnalysisAgents():
       lots of expertise in stock market analysis and investment
       strategies that is working for a super important customer.""",
       verbose=True,
+      llm=OllamaModelManager.getDefaultModel(),
       tools=[
         BrowserTools.scrape_and_summarize_website,
         SearchTools.search_internet,
         CalculatorTools.calculate,
-        SECTools.search_10q,
-        SECTools.search_10k
+        # SECTools.search_10q,
+        # SECTools.search_10k
       ]
     )
 
@@ -33,16 +35,17 @@ class StockAnalysisAgents():
       your customer with it""",
       backstory="""Known as the BEST research analyst, you're
       skilled in sifting through news, company announcements, 
-      and market sentiments. Now you're working on a super 
+      and market sentiments. Now you're working for a super 
       important customer""",
       verbose=True,
+      llm=OllamaModelManager.getDefaultModel(),
       tools=[
         BrowserTools.scrape_and_summarize_website,
         SearchTools.search_internet,
         SearchTools.search_news,
         YahooFinanceNewsTool(),
-        SECTools.search_10q,
-        SECTools.search_10k
+        # SECTools.search_10q,
+        # SECTools.search_10k
       ]
   )
 
@@ -56,6 +59,25 @@ class StockAnalysisAgents():
       strategic investment advice. You are now working for
       a super important customer you need to impress.""",
       verbose=True,
+      llm=OllamaModelManager.getDefaultModel(),
+      tools=[
+        BrowserTools.scrape_and_summarize_website,
+        SearchTools.search_internet,
+        SearchTools.search_news,
+        CalculatorTools.calculate,
+        YahooFinanceNewsTool()
+      ]
+    )
+  
+  def stock_advisor(self):
+    return Agent(
+      role='Stock Advisor',
+      goal="""Create a report that defines the strengths and weaknesses 
+      of a company's stock""",
+      backstory="""You have spend years analyzing stocks and understand the important
+      things to look for when analyzing a stock.  You create""",
+      verbose=True,
+      llm=OllamaModelManager.getDefaultModel(),
       tools=[
         BrowserTools.scrape_and_summarize_website,
         SearchTools.search_internet,

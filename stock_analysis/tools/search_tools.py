@@ -2,6 +2,7 @@ import json
 import os
 
 import requests
+from dotenv import load_dotenv
 from langchain.tools import tool
 
 
@@ -43,7 +44,8 @@ class SearchTools():
         'content-type': 'application/json'
     }
     response = requests.request("POST", url, headers=headers, data=payload)
-    results = response.json()['news']
+    responseJson = response.json()
+    results = responseJson['news']
     string = []
     for result in results[:top_result_to_return]:
       try:
@@ -55,3 +57,15 @@ class SearchTools():
         next
 
     return '\n'.join(string)
+
+
+# if __name__ == "__main__":
+#   load_dotenv()
+#   company = input("What is the company you want to search for? ")
+#   print("\n\n########################")
+#   # print('## Here are the search results')
+#   # print(SearchTools.search_internet(company))
+#   # print("########################\n")
+#   print('## Here are the news results')
+#   print(SearchTools.search_news(company))
+#   print("########################\n")

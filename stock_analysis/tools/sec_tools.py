@@ -4,7 +4,7 @@ import requests
 
 from langchain.tools import tool
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 
 from sec_api import QueryApi
@@ -84,7 +84,7 @@ class SECTools():
     )
     docs = text_splitter.create_documents([content])
     retriever = FAISS.from_documents(
-      docs, OpenAIEmbeddings()
+      docs, HuggingFaceEmbeddings()
     ).as_retriever()
     answers = retriever.get_relevant_documents(ask, top_k=4)
     answers = "\n\n".join([a.page_content for a in answers])
